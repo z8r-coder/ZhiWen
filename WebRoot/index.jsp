@@ -23,6 +23,7 @@
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <body>
@@ -42,7 +43,7 @@
 		</div>
 	</div>
 
-	<form id="reg" method="get" action="user!add.action" title="会员注册">
+	<form id="reg" title="会员注册">
 		<ol class="reg_error"></ol>
 		<p>
 			<label for="user">账号：</label> <input type="text"
@@ -69,7 +70,7 @@
 				name="user.userBirthday" class="text" id="date" readonly="readonly" />
 		</p>
 	</form>
-	<form id="login" method="get" action="user!login.action" title="会员登录">
+	<form id="login" method="post" action="user!login.action" title="会员登录">
 		<ol class="reg_error"></ol>
 		<p>
 			<label for="user">账号：</label> <input type="text" name="user.userAccount"
@@ -84,5 +85,8 @@
 			<label for="expires">登录后有效期一周</label>
 		</p>
 	</form>
+	<div id="loading">
+		数据交互中.......
+	</div>
 </body>
 </html>

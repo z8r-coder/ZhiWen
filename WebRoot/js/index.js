@@ -12,6 +12,15 @@ $(function() {
 	$('#login_a').click(function() {
 		$('#login').dialog('open');
 	});
+	$('#loading').dialog({
+		autoOpen : false,
+		modal : true,
+		closeOnEscape : false,
+		resizable : false,
+		draggable : false,
+		width : 180,
+		height : 50,
+	}).parent().parent().find('.ui-widget-header').hide();
 	$('#login').dialog({
 		autoOpen: false,
 		modal: true,
@@ -81,7 +90,29 @@ $(function() {
 			}
 		}
 	}).buttonset().validate({
-
+		submitHandler: function(form) {
+			$(form).ajaxSubmit({
+				url : 'user!add.action',
+				type : 'post',
+				beforeSubmit : function(formData, jqForm, options){
+					$('#loading').dialog('open');
+					$('#reg').dialog('widget').find('button').eq(1).button('disable');
+				},
+				success : function(responseText, statusText){
+					if(responseText) {
+						$('#reg').dialog('widget').find('button').eq(1).button('enable');
+						$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据新增成功');
+						setTimeout(function(){
+							$('#loading').dialog('close');
+							$('#reg').dialog('close');
+							$('#reg').resetForm();
+							$('#reg span.star').html('*').removeClass('succ');
+							$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('数据交互中...');
+						}, 1000);
+					}
+				},
+			});
+		},
 		showErrors: function(errorMap, errorList) {
 			var errors = this.numberOfInvalids();
 
@@ -96,6 +127,7 @@ $(function() {
 
 		highlight: function(element, errorClass) {
 			$(element).css('border', '1px solid #630');
+			$(element).parent().find('span').html('*').removeClass('succ');
 		},
 
 		unhighlight: function(element, errorClass) {
@@ -158,7 +190,7 @@ $(function() {
 		prevText: '上个月',
 		maxDate: 0,
 	});
-
+	
 	var host = ['aa', 'aaaa', 'aaaaaa', 'bb'];
 	$('#email').autocomplete({
 		delay: 0,
