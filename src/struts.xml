@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设置Struts2常量 -->
+	<!-- 启用动态方法访问 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 定义Action -->
+		<action name="user" class="com.roy.action.UserAction">
+			<!-- 定义结果映射，指定下一个视图路径 -->
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
+
+</struts>

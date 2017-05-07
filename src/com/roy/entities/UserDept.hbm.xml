@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+<hibernate-mapping>
+   <class name="com.roy.database.User" table="user_table">
+      <id name="userId" type="java.lang.Integer">
+         <column name="user_id"></column>
+         <!-- ID生成策略      采用数据库本地的自动增长 -->
+         <generator class="native"></generator>
+      </id>
+      <property name="userAccount" type="java.lang.String">
+          <column name="user_account"></column>
+      </property>
+      <property name="userPassword" type="java.lang.String">
+          <column name="user_password"></column>
+      </property>
+      <property name="userGender" type="java.lang.String">
+          <column name="user_gender"></column>
+      </property>
+      <property name="userEmail" type="java.lang.String">
+          <column name="user_email"></column>
+      </property>
+      <property name="userBirthday" type="java.sql.Date">
+          <column name="user_birthday"></column>
+      </property>
+      <property name="isdel" type="java.lang.String">
+          <column name="isdel"></column>
+      </property>
+      <property name="operTime" type="java.sql.Timestamp">
+          <column name="opertime"></column>
+      </property>
+   </class>
+</hibernate-mapping>
