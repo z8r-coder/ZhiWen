@@ -39,7 +39,7 @@ public class UserAction extends ActionSupport{
 	public String add() {
 		try {
 			iuserService.add(user);
-			return list();
+			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

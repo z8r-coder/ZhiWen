@@ -2,10 +2,10 @@ body {
 	margin: 40px 0 0 0;
 	padding: 0;
 	font-size: 12px;
-	font-family: å®‹ä½“;
+	font-family: ËÎÌå;
 	background: #fff;
 }
-/*æ›´æ”¹jqueryuiä¸»é¢˜å¯¹è¯æ¡† headerçš„èƒŒæ™¯*/
+/*¸ü¸ÄjqueryuiÖ÷Ìâ¶Ô»°¿ò headerµÄ±³¾°*/
 .ui-widget-header {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #9D9D9D;
@@ -27,45 +27,45 @@ body {
 	border: 1px solid #666;
 	background: #FFFFFF;
 }
-/*æŒ‰é’®æ­£å¸¸çŠ¶æ€çš„èƒŒæ™¯*/
+/*°´Å¥Õı³£×´Ì¬µÄ±³¾°*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #E7E7E7;
 	color: #000000;
 }
-/*é¼ æ ‡ç§»åŠ¨åˆ°æŒ‰é’®ä¸Šçš„èƒŒæ™¯*/
+/*Êó±êÒÆ¶¯µ½°´Å¥ÉÏµÄ±³¾°*/
 .ui-state-hover, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #ADADAD;
 }
-/*é¼ æ ‡æŒ‰ä¸‹çš„èƒŒæ™¯*/
-.ui-state-active, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+/*Êó±ê°´ÏÂµÄ±³¾°*/
+#reg.ui-state-active, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: url(../img/ui_white.png);
 }
-/*æ›´æ”¹button .ui icon*/
+/*¸ü¸Äbutton .ui icon*/
 .ui-state-default .ui-icon {
 	background-image: url(images/ui-icons_222222_256x240.png);
 }
-/*å·¥å…·æç¤ºçš„æ–‡æœ¬é¢œè‰²*/
+/*¹¤¾ßÌáÊ¾µÄÎÄ±¾ÑÕÉ«*/
 .ui-tooltip {
 	color: #666;
 }
-/*é‚®ç®±è‡ªåŠ¨è¡¥å…¨çš„æ‚¬åœèƒŒæ™¯è‰²*/
+/*ÓÊÏä×Ô¶¯²¹È«µÄĞüÍ£±³¾°É«*/
 .ui-menu .ui-state-focus {
 	background: url(../img/ui_header_bg.png);
 	color: #666;
 	border: 1px solid #666;
 }
-/*é‚®ç®±è‡ªåŠ¨è¡¥å…¨å­—ä½“é¢œè‰²*/
+/*ÓÊÏä×Ô¶¯²¹È«×ÖÌåÑÕÉ«*/
 .ui-menu {
 	color: #666;
 }
-/*ä¿®æ”¹å½“å¤©æ—¥æœŸæ ·å¼*/
+/*ĞŞ¸Äµ±ÌìÈÕÆÚÑùÊ½*/
 .ui-datepicker-today .ui-state-highlight {
 	border: 1px solid #eee;
 	color: #f60;
 }
-/*æ—¥å†uié€‰å®šå•å…ƒæ ¼æ ·å¼*/
+/*ÈÕÀúuiÑ¡¶¨µ¥Ôª¸ñÑùÊ½*/
 .ui-datepicker-current-day .ui-state-active {
 	border: 1px solid #eee;
 	color: #06f;
@@ -165,8 +165,57 @@ body {
 	margin: 3px 0 0 0;
 	font-size: 13px;
 }
-
 #reg p {
 	margin: 10px 0;
 	padding: 0;
+}
+
+#login {
+	padding: 15px 0 0 15px;
+}
+
+#login p label {
+	font-size: 14px;
+	color: #666;
+}
+#login .star {
+	font-size: 14px;
+	color: red;
+}
+#login .succ {
+	width: 28px;
+	display: inline-block;
+	background: url(../img/reg_succ.png) no-repeat;
+}
+#login ol {
+	margin: 0;
+	padding: 0 0 0 20px;
+	color: maroon;
+}
+#login ol li {
+	height: 20px;
+}
+#login .text {
+	border-radius: 4px;
+	border: 1px solid #CCCCCC;
+	background: #FFFFFF;
+	width: 200px;
+	height: 25px;
+	line-height: 25px;
+	color: #666;
+	text-indent: 5px;
+	margin: 3px 0 0 0;
+	font-size: 13px;
+}
+
+
+#login p {
+	margin: 10px 0;
+	padding: 0;
+}
+
+#expires {
+    position: relative;
+    top: 2px;
+    margin: 0 2px 0 125px;
 }

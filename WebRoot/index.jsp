@@ -36,13 +36,40 @@
 				<button id="search_button">查询</button>
 			</div>
 			<div class="header_member">
-				<a href="javascript:void(0)" id="reg_a">注册</a> | 
-				<a href="javascript:void(0)" id="login_a">登录</a>
+				<a href="###" id="reg_a">注册</a> | <a
+					href="###" id="login_a">登录</a>
 			</div>
 		</div>
 	</div>
 
 	<form id="reg" method="get" action="user!add.action" title="会员注册">
+		<ol class="reg_error"></ol>
+		<p>
+			<label for="user">账号：</label> <input type="text"
+				name="user.userAccount" class="text" id="user" /> <span
+				class="star">*</span>
+		</p>
+		<p>
+			<label for="pass">密码：</label> <input type="password"
+				name="user.userPassword" class="text" id="pass" /> <span
+				class="star">*</span>
+		</p>
+		<p>
+			<label for="email">邮箱：</label> <input type="text"
+				name="user.userEmail" class="text" id="email" /> <span class="star">*</span>
+		</p>
+		<p>
+			<label>性别：</label> <input type="radio" name="sex" value="male"
+				name="user.userGender" id="male" checked="checked"><label
+				for="male">男</label></input><input type="radio" name="sex" value="female"
+				name="user.userGender" id="female"><label for="female">女</label></input>
+		</p>
+		<p>
+			<label for="date">生日：</label> <input type="text" name="date"
+				name="user.userBirthday" class="text" id="date" readonly="readonly" />
+		</p>
+	</form>
+	<form id="login" method="get" action="user!login.action" title="会员登录">
 		<ol class="reg_error"></ol>
 		<p>
 			<label for="user">账号：</label> <input type="text" name="user.userAccount"
@@ -53,18 +80,8 @@
 				class="text" id="pass" /> <span class="star">*</span>
 		</p>
 		<p>
-			<label for="email">邮箱：</label> <input type="text" name="user.userEmail"
-				class="text" id="email" /> <span class="star">*</span>
-		</p>
-		<p>
-			<label>性别：</label> <input type="radio" name="sex" value="male" name="user.userGender"
-				id="male" checked="checked"><label for="male">男</label></input><input
-				type="radio" name="sex" value="female" name="user.userGender" id="female"><label
-				for="female">女</label></input>
-		</p>
-		<p>
-			<label for="date">生日：</label> <input type="text" name="date" name="user.userBirthday"
-				class="text" id="date" readonly="readonly" />
+			<input type="checkbox" name="expires" id="expires" checked="checked" />
+			<label for="expires">登录后有效期一周</label>
 		</p>
 	</form>
 </body>

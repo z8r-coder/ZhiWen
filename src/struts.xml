@@ -7,7 +7,12 @@
 	<!-- 设置Struts2常量 -->
 	<!-- 启用动态方法访问 -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<!-- 定义包 -->
 	<package name="default" namespace="/" extends="struts-default">
+		<!-- 定义全局结果映射 -->
+		<global-results>
+			<result name="error">/errorpage/error.jsp</result>
+		</global-results>
 		<!-- 定义Action -->
 		<action name="user" class="com.roy.action.UserAction">
 			<!-- 定义结果映射，指定下一个视图路径 -->

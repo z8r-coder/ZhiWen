@@ -5,10 +5,70 @@ $(function() {
 			primary: 'ui-icon-search',
 		}
 	});
-	
-	$('#reg_a').click(function(){
+
+	$('#reg_a').click(function() {
 		$('#reg').dialog('open');
 	});
+	$('#login_a').click(function() {
+		$('#login').dialog('open');
+	});
+	$('#login').dialog({
+		autoOpen: false,
+		modal: true,
+		width: 320,
+		height: 260,
+		resizable: false,
+		buttons: {
+			'登录': function() {
+				$(this).submit();
+			}
+		}
+	}).validate({
+		showErrors: function(errorMap, errorList) {
+			var errors = this.numberOfInvalids();
+
+			if(errors > 0) {
+				$('#reg').dialog('option', 'height', errors * 20 + 340);
+			} else {
+				$('#reg').dialog('option', 'height', 340);
+			}
+
+			this.defaultShowErrors();
+		},
+
+		highlight: function(element, errorClass) {
+			$(element).css('border', '1px solid #630');
+		},
+
+		unhighlight: function(element, errorClass) {
+			$(element).css('border', '1px solid #ccc');
+			$(element).parent().find('span').html('&nbsp').addClass('succ');
+		},
+		errorLabelContainer: 'ol.reg_error',
+		wrapper: 'li',
+
+		rules: {
+			user: {
+				required: true,
+				minlength: 2,
+			},
+			pass: {
+				required: true,
+				minlength: 6,
+			},
+		},
+		messages: {
+			user: {
+				required: '账号不得为空!',
+				minlength: '账号不得小于2位',
+			},
+			pass: {
+				required: '密码不得为空!',
+				minlength: '账号不得小于6位',
+			},
+		}
+	});
+	
 	$('#reg').dialog({
 		autoOpen: false,
 		modal: true,
@@ -20,31 +80,32 @@ $(function() {
 				$(this).submit();
 			}
 		}
-	}).buttonset().validate({		
-		showErrors : function(errorMap, errorList){
+	}).buttonset().validate({
+
+		showErrors: function(errorMap, errorList) {
 			var errors = this.numberOfInvalids();
-			
-			if(errors > 0){
-				$('#reg').dialog('option', 'height',errors * 20 + 340);
-			}else {
-				$('#reg').dialog('option', 'height',340);
+
+			if(errors > 0) {
+				$('#reg').dialog('option', 'height', errors * 20 + 340);
+			} else {
+				$('#reg').dialog('option', 'height', 340);
 			}
-			
+
 			this.defaultShowErrors();
 		},
-		
-		highlight : function(element,errorClass) {
+
+		highlight: function(element, errorClass) {
 			$(element).css('border', '1px solid #630');
 		},
-		
-		unhighlight : function(element, errorClass) {
+
+		unhighlight: function(element, errorClass) {
 			$(element).css('border', '1px solid #ccc');
 			$(element).parent().find('span').html('&nbsp').addClass('succ');
 		},
-		
-		errorLabelContainer : 'ol.reg_error',
-		wrapper : 'li',
-		
+
+		errorLabelContainer: 'ol.reg_error',
+		wrapper: 'li',
+
 		rules: {
 			user: {
 				required: true,
