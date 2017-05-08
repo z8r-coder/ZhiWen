@@ -52,9 +52,9 @@ $(function() {
 			var errors = this.numberOfInvalids();
 
 			if(errors > 0) {
-				$('#reg').dialog('option', 'height', errors * 20 + 340);
+				$('#login').dialog('option', 'height', errors * 20 + 260);
 			} else {
-				$('#reg').dialog('option', 'height', 340);
+				$('#login').dialog('option', 'height', 260);
 			}
 
 			this.defaultShowErrors();
@@ -62,6 +62,7 @@ $(function() {
 
 		highlight: function(element, errorClass) {
 			$(element).css('border', '1px solid #630');
+			$(element).parent().find('span').html('*').removeClass('succ');
 		},
 
 		unhighlight: function(element, errorClass) {
@@ -72,11 +73,11 @@ $(function() {
 		wrapper: 'li',
 
 		rules: {
-			user: {
+			'user.userAccount': {
 				required: true,
 				minlength: 2,
 			},
-			pass: {
+			'user.userPassword': {
 				required: true,
 				minlength: 6,
 			},
@@ -88,7 +89,7 @@ $(function() {
 			},
 			pass: {
 				required: '密码不得为空!',
-				minlength: '账号不得小于6位',
+				minlength: '密码不得小于6位',
 			},
 		}
 	});
@@ -117,6 +118,7 @@ $(function() {
 					if(responseText) {
 						$('#reg').dialog('widget').find('button').eq(1).button('enable');
 						$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据新增成功');
+						alert($('#user').val());
 						$.cookie('user',$('#user').val());
 						setTimeout(function(){
 							$('#loading').dialog('close');
@@ -158,32 +160,33 @@ $(function() {
 		wrapper: 'li',
 
 		rules: {
-			user: {
+			//这个地方是name属性
+			'user.userAccount': {
 				required: true,
 				minlength: 2,
 			},
-			pass: {
+			'user.userPassword': {
 				required: true,
 				minlength: 6,
 			},
-			email: {
+			'user.userEmail': {
 				required: true,
 				email: 6,
 			},
-			date: {
+			'user.userBirthday': {
 				date: true,
 			},
 		},
 		messages: {
-			user: {
+			'user.userAccount': {
 				required: '账号不得为空!',
 				minlength: '账号不得小于2位',
 			},
-			pass: {
+			'user.userPassword': {
 				required: '密码不得为空!',
-				minlength: '账号不得小于6位',
+				minlength: '密码不得小于6位',
 			},
-			email: {
+			'user.userEmail': {
 				required: '邮箱不得为空!',
 				minlength: '请输入正确的邮箱',
 			},

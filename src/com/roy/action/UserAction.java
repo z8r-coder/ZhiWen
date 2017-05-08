@@ -57,8 +57,11 @@ public class UserAction extends ActionSupport{
 			if (list == null && list.size() == 0) {
 				return ERROR;
 			}else {
-				if (list.get(0).getUserPassword().equals(user.getUserPassword())) {
+				if (list.size() != 0 && 
+						list.get(0).getUserPassword().equals(user.getUserPassword())) {
 					return SUCCESS;
+				}else {
+					return ERROR;
 				}
 			}
 		} catch (Exception e) {

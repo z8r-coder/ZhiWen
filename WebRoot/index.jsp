@@ -78,7 +78,7 @@
 		<ol class="reg_error"></ol>
 		<p>
 			<label for="user">账号：</label> <input type="text" name="user.userAccount"
-				class="text" id="user" /> <span class="star">*</span>
+				class="text" id="user_login" /> <span class="star">*</span>
 		</p>
 		<p>
 			<label for="pass">密码：</label> <input type="password" name="user.userPassword"
