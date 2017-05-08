@@ -5,7 +5,22 @@ $(function() {
 			primary: 'ui-icon-search',
 		}
 	});
-
+	
+	$('#logout').click(function(){
+		$.removeCookie('user');
+		window.location.href = '/S2S4H4'
+	});
+	
+	$('#member, #logout').hide();
+	if($.cookie('user')){
+		$('#member, #logout').show();
+		$('#member').html($.cookie('user'));
+		$('#reg_a, #login_a').hide();
+	}else {
+		$('#member, #logout').hide();
+		$('#reg_a, #login_a').show();
+	}
+	
 	$('#reg_a').click(function() {
 		$('#reg').dialog('open');
 	});
@@ -102,12 +117,16 @@ $(function() {
 					if(responseText) {
 						$('#reg').dialog('widget').find('button').eq(1).button('enable');
 						$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据新增成功');
+						$.cookie('user',$('#user').val());
 						setTimeout(function(){
 							$('#loading').dialog('close');
 							$('#reg').dialog('close');
 							$('#reg').resetForm();
 							$('#reg span.star').html('*').removeClass('succ');
 							$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('数据交互中...');
+							$('#member, #logout').show();
+							$('#member').html($.cookie('user'));
+							$('#reg_a, #login_a').hide();
 						}, 1000);
 					}
 				},

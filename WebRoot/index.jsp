@@ -37,9 +37,13 @@
 				<button id="search_button">查询</button>
 			</div>
 			<div class="header_member">
-				<a href="###" id="reg_a">注册</a> | <a
-					href="###" id="login_a">登录</a>
+				<a href="javascript:void(0)" id="reg_a">注册</a> 
+				<a href="javascript:void(0)" id="member">用户</a> 
+				| 
+				<a href="javascript:void(0)" id="login_a">登录</a>
+				<a href="javascript:void(0)" id="logout">退出</a>
 			</div>
+			
 		</div>
 	</div>
 
