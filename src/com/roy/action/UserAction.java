@@ -54,7 +54,7 @@ public class UserAction extends ActionSupport{
 		try {
 			List<User> list = iuserService.query(user.getUserAccount());
 			
-			if (list == null && list.size() == 0) {
+			if (list == null || list.size() == 0) {
 				return ERROR;
 			}else {
 				if (list.size() != 0 && 

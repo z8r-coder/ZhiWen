@@ -94,6 +94,12 @@ $(function() {
 		}
 	});
 	
+	var user_val;
+	$('#user').blur(function(){
+		user_val = $(this).val();
+		user_val.toString();
+	});
+	
 	$('#reg').dialog({
 		autoOpen: false,
 		modal: true,
@@ -118,7 +124,6 @@ $(function() {
 					if(responseText) {
 						$('#reg').dialog('widget').find('button').eq(1).button('enable');
 						$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据新增成功');
-						alert($('#user').val());
 						$.cookie('user',$('#user').val());
 						setTimeout(function(){
 							$('#loading').dialog('close');
@@ -158,12 +163,16 @@ $(function() {
 
 		errorLabelContainer: 'ol.reg_error',
 		wrapper: 'li',
-
+		
 		rules: {
 			//这个地方是name属性
 			'user.userAccount': {
 				required: true,
 				minlength: 2,
+				remote : {
+					url : 'ajaxcheckAction!ajaxCheck.action',
+					type : 'POST',
+				},
 			},
 			'user.userPassword': {
 				required: true,
@@ -181,6 +190,7 @@ $(function() {
 			'user.userAccount': {
 				required: '账号不得为空!',
 				minlength: '账号不得小于2位',
+				remote : '账号被占用',
 			},
 			'user.userPassword': {
 				required: '密码不得为空!',
