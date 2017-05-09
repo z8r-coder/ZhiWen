@@ -57,4 +57,25 @@ public class AjaxCheckAction extends ActionSupport{
 			response.getWriter().println("false");
 		}
 	}
+	/**
+	 * 登录检查账户密码是否正确
+	 * @throws Exception
+	 */
+	public void checkPassWord() throws Exception {
+		request = ServletActionContext.getRequest();
+		response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		String userAccount = request.getParameter("user.userAccount");
+		String userPassword = request.getParameter("user.userPassword");
+		List<User> list = iuserService.query(userAccount);
+		if (list == null || list.size() == 0) {
+			response.getWriter().println("false");
+		}else {
+			if (list.get(0).getUserPassword().equals(userPassword)) {
+				response.getWriter().println("true");
+			}else {
+				response.getWriter().println("false");
+			}
+		}
+	}
 }

@@ -74,7 +74,7 @@
 				name="user.userBirthday" class="text" id="date" readonly="readonly" />
 		</p>
 	</form>
-	<form id="login" method="post" action="user!login.action" title="会员登录">
+	<form id="login" title="会员登录">
 		<ol class="reg_error"></ol>
 		<p>
 			<label for="user">账号：</label> <input type="text" name="user.userAccount"
@@ -82,7 +82,7 @@
 		</p>
 		<p>
 			<label for="pass">密码：</label> <input type="password" name="user.userPassword"
-				class="text" id="pass" /> <span class="star">*</span>
+				class="text" id="pass_login" /> <span class="star">*</span>
 		</p>
 		<p>
 			<input type="checkbox" name="expires" id="expires" checked="checked" />

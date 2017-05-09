@@ -44,10 +44,44 @@ $(function() {
 		resizable: false,
 		buttons: {
 			'登录': function() {
+				
 				$(this).submit();
 			}
 		}
 	}).validate({
+		submitHandler: function(form) {
+			$(form).ajaxSubmit({
+				beforeSubmit : function(formData, jqForm, options){
+					$('#loading').dialog('open');
+					$('#login').dialog('widget').find('button').eq(1).button('disable');
+				},
+				success : function(responseText, statusText){
+					if(responseText) {
+						$('#login').dialog('widget').find('button').eq(1).button('enable');
+						$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('登录成功');
+						
+						if($('#expires').is(':checked')){
+							$.cookie('user',$('#user_login').val(), {
+								expires : 7,
+							});
+						}else {
+							$.cookie('user',$('#user_login').val());
+						}
+						
+						setTimeout(function(){
+							$('#loading').dialog('close');
+							$('#login').dialog('close');
+							$('#login').resetForm();
+							$('#login span.star').html('*').removeClass('succ');
+							$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('登录中...');
+							$('#member, #logout').show();
+							$('#member').html($.cookie('user'));
+							$('#reg_a, #login_a').hide();
+						}, 1000);
+					}
+				},
+			});
+		},
 		showErrors: function(errorMap, errorList) {
 			var errors = this.numberOfInvalids();
 
@@ -80,24 +114,28 @@ $(function() {
 			'user.userPassword': {
 				required: true,
 				minlength: 6,
+				remote : {
+					url : 'ajaxcheckAction!checkPassWord.action',
+					type : 'POST',
+					data : {
+						'user.userAccount' : function(){
+							return $('#user_login').val();
+						},
+					},
+				},
 			},
 		},
 		messages: {
-			user: {
+			'user.userAccount': {
 				required: '账号不得为空!',
 				minlength: '账号不得小于2位',
 			},
-			pass: {
+			'user.userPassword': {
 				required: '密码不得为空!',
 				minlength: '密码不得小于6位',
+				remote : '账号或密码错误',
 			},
 		}
-	});
-	
-	var user_val;
-	$('#user').blur(function(){
-		user_val = $(this).val();
-		user_val.toString();
 	});
 	
 	$('#reg').dialog({
