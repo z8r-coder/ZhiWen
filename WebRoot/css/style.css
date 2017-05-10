@@ -38,8 +38,7 @@ body {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #ADADAD;
 }
-/*鼠标按下的背景*/
-#reg.ui-state-active, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+.ui-state-active .iu-state-focus .ui-widget-content, .ui-widget-header{
 	background: url(../img/ui_white.png);
 }
 /*更改button .ui icon*/
