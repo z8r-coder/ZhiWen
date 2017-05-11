@@ -2,10 +2,10 @@ body {
 	margin: 40px 0 0 0;
 	padding: 0;
 	font-size: 12px;
-	font-family: ËÎÌå;
+	font-family: å®‹ä½“;
 	background: #fff;
 }
-/*¸ü¸ÄjqueryuiÖ÷Ìâ¶Ô»°¿ò headerµÄ±³¾°*/
+/*æ›´æ”¹jqueryuiä¸»é¢˜å¯¹è¯æ¡† headerçš„èƒŒæ™¯*/
 .ui-widget-header {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #9D9D9D;
@@ -27,44 +27,45 @@ body {
 	border: 1px solid #666;
 	background: #FFFFFF;
 }
-/*°´Å¥Õı³£×´Ì¬µÄ±³¾°*/
+/*æŒ‰é’®æ­£å¸¸çŠ¶æ€çš„èƒŒæ™¯*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #E7E7E7;
 	color: #000000;
 }
-/*Êó±êÒÆ¶¯µ½°´Å¥ÉÏµÄ±³¾°*/
+/*é¼ æ ‡ç§»åŠ¨åˆ°æŒ‰é’®ä¸Šçš„èƒŒæ™¯*/
 .ui-state-hover, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: url(../img/ui_header_bg.png);
 	border: 1px solid #ADADAD;
 }
+/*é¼ æ ‡æŒ‰ä¸‹çš„èƒŒæ™¯*/
 .ui-state-active .iu-state-focus .ui-widget-content, .ui-widget-header{
 	background: url(../img/ui_white.png);
 }
-/*¸ü¸Äbutton .ui icon*/
+/*æ›´æ”¹button .ui icon*/
 .ui-state-default .ui-icon {
 	background-image: url(images/ui-icons_222222_256x240.png);
 }
-/*¹¤¾ßÌáÊ¾µÄÎÄ±¾ÑÕÉ«*/
+/*å·¥å…·æç¤ºçš„æ–‡æœ¬é¢œè‰²*/
 .ui-tooltip {
 	color: #666;
 }
-/*ÓÊÏä×Ô¶¯²¹È«µÄĞüÍ£±³¾°É«*/
+/*é‚®ç®±è‡ªåŠ¨è¡¥å…¨çš„æ‚¬åœèƒŒæ™¯è‰²*/
 .ui-menu .ui-state-focus {
 	background: url(../img/ui_header_bg.png);
 	color: #666;
 	border: 1px solid #666;
 }
-/*ÓÊÏä×Ô¶¯²¹È«×ÖÌåÑÕÉ«*/
+/*é‚®ç®±è‡ªåŠ¨è¡¥å…¨å­—ä½“é¢œè‰²*/
 .ui-menu {
 	color: #666;
 }
-/*ĞŞ¸Äµ±ÌìÈÕÆÚÑùÊ½*/
+/*ä¿®æ”¹å½“å¤©æ—¥æœŸæ ·å¼*/
 .ui-datepicker-today .ui-state-highlight {
 	border: 1px solid #eee;
 	color: #f60;
 }
-/*ÈÕÀúuiÑ¡¶¨µ¥Ôª¸ñÑùÊ½*/
+/*æ—¥å†uié€‰å®šå•å…ƒæ ¼æ ·å¼*/
 .ui-datepicker-current-day .ui-state-active {
 	border: 1px solid #eee;
 	color: #06f;
@@ -164,37 +165,37 @@ body {
 	margin: 3px 0 0 0;
 	font-size: 13px;
 }
-#reg p {
+#reg p, #question p{
 	margin: 10px 0;
 	padding: 0;
 }
 
-#login {
+#login, #question{
 	padding: 15px 0 0 15px;
 }
 
-#login p label {
+#login p label, #question p label{
 	font-size: 14px;
 	color: #666;
 }
-#login .star {
+#login .star,#question .star {
 	font-size: 14px;
 	color: red;
 }
-#login .succ {
+#login .succ, #question .succ {
 	width: 28px;
 	display: inline-block;
 	background: url(../img/reg_succ.png) no-repeat;
 }
-#login ol {
+#login ol, #question ol {
 	margin: 0;
 	padding: 0 0 0 20px;
 	color: maroon;
 }
-#login ol li {
+#login ol li, #question ol li {
 	height: 20px;
 }
-#login .text {
+#login .text, #question .text {
 	border-radius: 4px;
 	border: 1px solid #CCCCCC;
 	background: #FFFFFF;
@@ -218,7 +219,6 @@ body {
     top: 2px;
     margin: 0 2px 0 125px;
 }
-
 #loading {
 	background: url(../img/loading.gif) no-repeat 20px center;
 	line-height: 25px ;
@@ -226,4 +226,58 @@ body {
 	font-weight: bold;
 	text-indent: 40px;
 	color: #666;
+}
+
+#error {
+	background: url(../img/error.png) no-repeat 20px center;
+	line-height: 28px ;
+	font-size: 14px;
+	font-weight: bold;
+	text-indent: 40px;
+	color: #666;
+}
+
+#tabs {
+	border: none;
+}
+/*tabæ  activeçš„æ—¶å€™çš„é¢œè‰²*/
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+	color: #666;
+}
+/*tabæ  é¼ æ ‡ç§»åŠ¨ä¸Šå»çš„æ—¶å€™æ”¹å˜é¢œè‰²*/
+.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link {
+	color: #666;
+}
+.ui-state-hover:hover{
+	border: 1px solid #ADADAD;
+}
+.ui-state-default a, .ui-state-default a:link {
+	color: #666;
+}
+/*åœ¨defaultçŠ¶æ€ä¸‹é¢œè‰²*/
+.ui-tabs .ui-tabs-nav li a {
+	color: #666;
+}
+
+#ui-id-12,#ui-id-8,#ui-id-10 {
+	border: 1px solid #aaa;
+	border-top: none;
+	position: relative;
+	top: -2px;
+}
+
+
+#main {
+	width: 800px;
+	margin: 0 auto;
+	padding: 10px 0 0 0;
+}
+
+#main .main-left {
+	width: 580px;
+	float: left;
+}
+#main .main-right {
+	width: 200px;
+	float: right;
 }

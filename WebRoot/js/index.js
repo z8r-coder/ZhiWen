@@ -5,11 +5,47 @@ $(function() {
 			primary: 'ui-icon-search',
 		}
 	});
-	
+	$('#question_button').button({
+		icons: {
+			primary: 'ui-icon-lightbulb',
+		}
+	}).click(function(){
+		if($.cookie('user')){
+			
+		}else{
+			$('#error').dialog('open');
+			setTimeout(function(){
+				$('#error').dialog('close');
+				$('#login').dialog('open');
+			}, 500);
+		}
+	});
+	$('#question').dialog({
+		autoOpen: true,
+		modal: true,
+		width: 320,
+		height: 340,
+		resizable: false,
+		buttons: {
+			'提交': function() {
+				$(this).submit();
+			}
+		}
+	});
 	$('#logout').click(function(){
 		$.removeCookie('user');
 		window.location.href = '/S2S4H4'
 	});
+	
+	$('#error').dialog({
+		autoOpen : false,
+		modal : true,
+		closeOnEscape : false,
+		resizable : false,
+		draggable : false,
+		width : 200,
+		height : 50,
+	}).parent().find('.ui-widget-header').hide();
 	
 	$('#member, #logout').hide();
 	if($.cookie('user')){
@@ -35,7 +71,7 @@ $(function() {
 		draggable : false,
 		width : 180,
 		height : 50,
-	}).parent().parent().find('.ui-widget-header').hide();
+	}).parent().find('.ui-widget-header').hide();
 	$('#login').dialog({
 		autoOpen: false,
 		modal: true,
@@ -297,4 +333,9 @@ $(function() {
 			response(result);
 		},
 	});
+	$('#tabs').tabs({
+		active: 0,
+	});
+
+	$('#accordion').accordion();
 });
