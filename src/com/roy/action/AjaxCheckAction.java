@@ -10,6 +10,12 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.roy.database.User;
 import com.roy.service.IUserService;
+/**
+ * 有效性检查类
+ * @author Roy
+ * @date: 2017年5月12日  下午9:43:43
+ * version:
+ */
 public class AjaxCheckAction extends ActionSupport{
 	private HttpServletRequest request;
 	private HttpServletResponse response;

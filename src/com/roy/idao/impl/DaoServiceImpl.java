@@ -72,8 +72,7 @@ public class DaoServiceImpl implements IDaoService {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		for(Object object : objects){
-			//ÐéÄâÉ¾³ý
-			session.update(object);
+			session.delete(object);
 		}
 		transaction.commit();
 		session.close();

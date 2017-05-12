@@ -11,7 +11,7 @@ $(function() {
 		}
 	}).click(function(){
 		if($.cookie('user')){
-			
+			$('#question').dialog('open');
 		}else{
 			$('#error').dialog('open');
 			setTimeout(function(){
@@ -21,17 +21,22 @@ $(function() {
 		}
 	});
 	$('#question').dialog({
-		autoOpen: true,
+		autoOpen: false,
 		modal: true,
-		width: 320,
-		height: 340,
+		width: 500,
+		height: 380,
 		resizable: false,
 		buttons: {
-			'提交': function() {
-				$(this).submit();
+			'发布': function() {
+				$(this).ajaxSubmit({
+					
+				});
 			}
 		}
 	});
+	
+	$('.uEditorCustom').uEditor();
+	
 	$('#logout').click(function(){
 		$.removeCookie('user');
 		window.location.href = '/S2S4H4'

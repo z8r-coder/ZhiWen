@@ -20,12 +20,15 @@
 </head>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="uEditor/uEditor.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/jquery.form.js"></script>
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="uEditor/uEditor.css" type="text/css" />
 <body>
 	<div id="header">
 		<div class="header_main">
@@ -117,8 +120,11 @@
 	<form id="question" title="提问">
 		<p>
 			<label for="title">问题名称：</label> <input type="text"
-				name="title" class="text" id="title" /> <span
+				name="title" style="width: 390px" class="text" id="title" /> <span
 				class="star">*</span>
+		</p>
+		<p>
+			<textarea class="uEditorCustom" name="content">请输入问题描述</textarea>
 		</p>
 	</form>
 	<div id="loading">数据交互中.......</div>

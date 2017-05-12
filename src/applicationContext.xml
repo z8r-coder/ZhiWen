@@ -66,4 +66,8 @@
 	    <!-- 注入业务Bean -->
 	    <property name="idaoService" ref="idaoService"></property>
 	</bean>
+	<!-- 提问业务beans -->
+	<bean id="iquestionService" class="com.roy.service.impl.QuestionServiceImpl">
+	    <property name="idaoService" ref="idaoService"></property>
+	</bean>
 </beans>

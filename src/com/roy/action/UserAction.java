@@ -7,6 +7,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.roy.database.User;
 import com.roy.service.IUserService;
 
+/**
+ * 用户管理业务控制类
+ * @author Roy
+ * @date: 2017年5月12日  下午9:44:27
+ * version:
+ */
 public class UserAction extends ActionSupport{
 	private IUserService iuserService;
 	private User user;//属性驱动，将客户端提交的数据自动封装给属性，当前是属性user
