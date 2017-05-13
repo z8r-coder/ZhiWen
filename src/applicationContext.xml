@@ -25,22 +25,10 @@
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
 	</bean>
 
-	<!-- 提问数据源 -->
-	<bean id="dataSourceQuestion" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="user" value="${jdbc.user}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-		<property name="driverClass" value="${jdbc.driverClass}"></property>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/question_table"></property>
-
-		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
-		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
-	</bean>
-
 	<!-- 配置 SessionFactory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="dataSourceQuestion" ref="dataSourceQuestion"></property>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 		<property name="mappingLocations" value="classpath:com/roy/entities/*.hbm.xml"></property>
 	</bean>
