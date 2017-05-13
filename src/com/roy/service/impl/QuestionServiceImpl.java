@@ -6,6 +6,8 @@ import java.util.List;
 import com.roy.database.Question;
 import com.roy.database.User;
 import com.roy.idao.IDaoService;
+import com.roy.idao.IQuestionDaoService;
+import com.roy.idao.impl.QuestionDaoServiceImpl;
 import com.roy.service.IQuestionService;
 
 /**
@@ -15,20 +17,20 @@ import com.roy.service.IQuestionService;
  * @date: 2017年5月12日 下午8:59:02 version:
  */
 public class QuestionServiceImpl implements IQuestionService {
-	private IDaoService idaoService;
+	private IQuestionDaoService iquestiondaoService;
 
-	public IDaoService getIdaoService() {
-		return idaoService;
+	public IQuestionDaoService getIquestiondaoService() {
+		return iquestiondaoService;
 	}
 
-	public void setIdaoService(IDaoService idaoService) {
-		this.idaoService = idaoService;
+	public void setIquestiondaoService(IQuestionDaoService iquestiondaoService) {
+		this.iquestiondaoService = iquestiondaoService;
 	}
 
 	@Override
 	public List<Question> query(String title) throws Exception {
 		// TODO Auto-generated method stub
-		List<Question> list = (List<Question>) idaoService
+		List<Question> list = (List<Question>) iquestiondaoService
 				.query("from Question where " + "title='" + title + "'");
 		return list;
 	}
@@ -36,7 +38,7 @@ public class QuestionServiceImpl implements IQuestionService {
 	@Override
 	public List<Question> query(User user) throws Exception {
 		// TODO Auto-generated method stub
-		List<Question> list = (List<Question>) idaoService
+		List<Question> list = (List<Question>) iquestiondaoService
 				.query("from Question where " + "user_account='" + user.getUserAccount() + "'");
 		return list;
 	}
@@ -45,14 +47,14 @@ public class QuestionServiceImpl implements IQuestionService {
 	public void update(Question question) throws Exception {
 		// TODO Auto-generated method stub
 		question.setQuestionDate(new Timestamp(System.currentTimeMillis()));
-		idaoService.update(question);
+		iquestiondaoService.update(question);
 	}
 
 	@Override
 	public void add(Question question) throws Exception {
 		// TODO Auto-generated method stub
 		question.setQuestionDate(new Timestamp(System.currentTimeMillis()));
-		idaoService.save(question);
+		iquestiondaoService.save(question);
 	}
 
 	@Override
@@ -60,11 +62,11 @@ public class QuestionServiceImpl implements IQuestionService {
 		// TODO Auto-generated method stub
 		String hql = "from Question where user_account='" + question.getUserAccount() +"' and "
 				+ "title='" + question.getTitle() + "'";
-		List<Question> list = (List<Question>)idaoService.query(hql);
+		List<Question> list = (List<Question>)iquestiondaoService.query(hql);
 		
 		//获得对象数组
 		Object objects = list.toArray();
-		idaoService.delete(objects);
+		iquestiondaoService.delete(objects);
 	}
 
 }

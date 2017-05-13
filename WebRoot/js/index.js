@@ -29,7 +29,8 @@ $(function() {
 		buttons: {
 			'发布': function() {
 				$(this).ajaxSubmit({
-					
+					url : 'question!add.action',
+					type : 'post',
 				});
 			}
 		}

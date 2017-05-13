@@ -1,3 +1,5 @@
 /applicationContext.xml
 /com/
-/db.properties.question
+/db.properties
+/hibernate.cfg.xml
+/struts.xml

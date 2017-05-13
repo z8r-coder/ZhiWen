@@ -21,6 +21,9 @@
 		<action name="ajaxcheckAction" class="com.roy.action.AjaxCheckAction">
 		    <result name="success">index.jsp</result>
 		</action>
+		<action name="question" class="com.roy.action.QuestionAction">
+		    <result name="success">index.jsp</result>
+		</action>
 	</package>
 
 </struts>

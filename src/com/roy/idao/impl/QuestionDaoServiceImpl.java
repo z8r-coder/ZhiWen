@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.roy.idao.IDaoService;
+import com.roy.idao.IQuestionDaoService;
 
-public class DaoServiceImpl implements IDaoService {
+public class QuestionDaoServiceImpl implements IQuestionDaoService{
 	private SessionFactory sessionFactory;
 	
 	public SessionFactory getSessionFactory() {
@@ -19,6 +19,7 @@ public class DaoServiceImpl implements IDaoService {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
 	/**
 	 * 打开并返回一个数据库的会话
 	 * @return
