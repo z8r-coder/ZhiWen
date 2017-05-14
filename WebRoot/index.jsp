@@ -120,11 +120,11 @@
 	<form id="question" title="提问">
 		<p>
 			<label for="title">问题名称：</label> <input type="text"
-				name="title" style="width: 390px" class="text" id="title" /> <span
+				name="question.title" style="width: 390px" class="text" id="title" /> <span
 				class="star">*</span>
 		</p>
 		<p>
-			<textarea class="uEditorCustom" name="content">请输入问题描述</textarea>
+			<textarea class="uEditorCustom" name="question.content">请输入问题描述</textarea>
 		</p>
 	</form>
 	<div id="loading">数据交互中.......</div>

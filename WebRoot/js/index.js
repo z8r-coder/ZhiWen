@@ -20,6 +20,7 @@ $(function() {
 			}, 500);
 		}
 	});
+	
 	$('#question').dialog({
 		autoOpen: false,
 		modal: true,
@@ -31,6 +32,27 @@ $(function() {
 				$(this).ajaxSubmit({
 					url : 'question!add.action',
 					type : 'post',
+					data : {
+						'question.userAccount' : $.cookie('user'),
+						'question.content' : $('.uEditorIframe').contents().find('#iframeBody').html(),
+					},
+					beforeSubmit : function(formData, jqForm, options){
+						$('#loading').dialog('open');
+						$('#question').dialog('widget').find('button').eq(1).button('disable');
+					},
+					success : function(responseText, statusText){
+						if(responseText) {
+							$('#question').dialog('widget').find('button').eq(1).button('enable');
+							$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('登录成功');
+							$('.uEditorIframe').contents().find('#iframeBody').html("请输入问题描述！")
+							setTimeout(function(){
+								$('#loading').dialog('close');
+								$('#question').dialog('close');
+								$('#question').resetForm();
+								$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('登录中...');
+							}, 1000);
+						}
+					},
 				});
 			}
 		}
