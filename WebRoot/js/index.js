@@ -20,14 +20,26 @@ $(function() {
 			}, 500);
 		}
 	});
-	
+	//时间戳格式化
+	var dateFormat = function (time) {
+		//yy-mm-dd hh-mm-ss 格式
+		var jsonDate = eval(time);
+		var date = new Date(parseInt(time.date.time)).toLocaleString().replace(/:\d{1,2}$/,' ');
+		return date.toString();
+	}
 	$.ajax({
 		url : 'question!show.action',
 		type : 'POST',
 		success : function(response, status, xhr) {
 			var json = $.parseJSON(response);
 			var html = '';
-			alert(json.length);
+			$.each(json, function(index, value){
+				var jsonDate = eval(value);
+				html += '<h4>'+ value.user +' 发表于 ' + dateFormat(value) + '</h4>'
+				 + '<h3>' + value.title +'</h3>'
+				 + 	'<div class="editor">' + value.content + '</div>';
+			});
+			$('.content').append(html);
 		},
 	});
 	
