@@ -291,6 +291,8 @@ body {
 	color:#369;
 }
 .content .editor {
+	line-height: 180%;
+	overflow: hidden;
 	color : #333;
 }
 .content .bottom {

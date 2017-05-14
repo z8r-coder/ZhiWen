@@ -33,13 +33,38 @@ $(function() {
 		success : function(response, status, xhr) {
 			var json = $.parseJSON(response);
 			var html = '';
+			var arr = [];
 			$.each(json, function(index, value){
 				var jsonDate = eval(value);
 				html += '<h4>'+ value.user +' 发表于 ' + dateFormat(value) + '</h4>'
 				 + '<h3>' + value.title +'</h3>'
-				 + 	'<div class="editor">' + value.content + '</div>';
+				 + 	'<div class="editor">' + value.content + '</div>'
+				 + '<div class="bottom">0条评论 <span class="down">显示全部</span>'
+				 + '<span class="up">收起</span></div>'
+				 + '<hr noshade="noshade" size="1"/>';
 			});
 			$('.content').append(html);
+			$.each($('.editor'), function(index, value){
+				arr[index] = $(value).height();
+				if($(value).height() > 155) {
+					$(value).next('.bottom').find('.up').hide();
+				}
+				$(value).height(155);
+			});
+			$.each($('.bottom .down'), function(index, value){
+				$(this).click(function(){
+					$(this).parent().prev().height(arr[index]);
+					$(this).hide();
+					$(this).parent().find('.up').show();
+				});
+			});
+			$.each($('.bottom .up'), function(index, value){
+				$(this).click(function(){
+					$(this).parent().prev().height(155);
+					$(this).hide();
+					$(this).parent().find('.down').show();
+				});
+			});
 		},
 	});
 	

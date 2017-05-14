@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.roy.database.User;
 import com.roy.service.IUserService;
+import com.sun.webkit.graphics.WCRenderQueue;
 /**
  * 有效性检查类
  * @author Roy
