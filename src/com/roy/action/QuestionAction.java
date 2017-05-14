@@ -1,8 +1,17 @@
 package com.roy.action;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.roy.database.Question;
 import com.roy.service.IQuestionService;
+
+import net.sf.json.JSONObject;
 
 /**
  * 用户问题管理控制类
@@ -11,6 +20,20 @@ import com.roy.service.IQuestionService;
  * version:
  */
 public class QuestionAction extends ActionSupport{
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
 	private Question question;
 	private IQuestionService iquestionService;
 	public Question getQuestion() {
@@ -68,5 +91,28 @@ public class QuestionAction extends ActionSupport{
 			e.printStackTrace();
 		}
 		return ERROR;
+	}
+	/**
+	 * ajax显示问题
+	 * 此处显示最多5个问题，不足5个的时候则全部显示
+	 */
+	public void show() {
+		response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			List<Question> list = iquestionService.query();
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("title", list.get(0).getTitle());
+			jsonObject.put("content", list.get(0).getContent());
+			response.getWriter().println(jsonObject.toString());
+			if (list.size() < 5) {
+				
+			}else {
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -21,6 +21,16 @@ $(function() {
 		}
 	});
 	
+	$.ajax({
+		url : 'question!show.action',
+		type : 'POST',
+		success : function(response, status, xhr) {
+			var json = $.parseJSON(response);
+			var html = '';
+			alert(json.length);
+		},
+	});
+	
 	$('#question').dialog({
 		autoOpen: false,
 		modal: true,

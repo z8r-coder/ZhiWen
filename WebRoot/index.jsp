@@ -59,6 +59,16 @@
 					<li id="tab3"><a href="tab3.html">tab3</a></li>
 				</ul>
 			</div>
+			<div class="content">
+				<h4>RoyRuan 发表于 2014-05-10</h4>
+				<h3>为什么 Go 语言的性能还不如java？</h3>
+				<div class="editor">
+					123
+				</div>
+				<div class="bottom">0条评论 <span class="down">显示全部</span>
+				<span class="up">收起</span></div>
+				<hr noshade="noshade" size="1"/>
+			</div>
 		</div>
 		<div class="main-right">
 

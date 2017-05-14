@@ -281,3 +281,32 @@ body {
 	width: 200px;
 	float: right;
 }
+
+.content h4 {
+	color: #666;
+	font-weight: normal;
+}
+
+.content h3 {
+	color:#369;
+}
+.content .editor {
+	color : #333;
+}
+.content .bottom {
+	padding: 5px 0 0 0;
+}
+.content hr {
+	color:#ccc;
+	height:1px;
+}
+.content .up {
+	float: right;
+	color: #369;
+	cursor: pointer;
+}
+.content .down {
+	float: right;
+	color: #369;
+	cursor: pointer;
+}

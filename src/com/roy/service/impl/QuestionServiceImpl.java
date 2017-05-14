@@ -26,7 +26,18 @@ public class QuestionServiceImpl implements IQuestionService {
 	public void setIquestiondaoService(IQuestionDaoService iquestiondaoService) {
 		this.iquestiondaoService = iquestiondaoService;
 	}
-
+	
+	/**
+	 * 这个地方的思路有问题
+	 */
+	@Override
+	public List<Question> query() throws Exception {
+		// TODO Auto-generated method stub
+		List<Question> list = (List<Question>) iquestiondaoService
+				.query("from Question order by date desc");
+		return list;
+	}
+	
 	@Override
 	public List<Question> query(String title) throws Exception {
 		// TODO Auto-generated method stub

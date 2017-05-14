@@ -14,6 +14,12 @@ import com.roy.database.User;
 public interface IQuestionService {
 	
 	/**
+	 * 查询全部
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Question> query() throws Exception;
+	/**
 	 * 根据标题来查询提问内容
 	 * @param title
 	 * @return
