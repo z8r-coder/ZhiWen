@@ -34,16 +34,54 @@ $(function() {
 			var json = $.parseJSON(response);
 			var html = '';
 			var arr = [];
+			var summary = [];
 			$.each(json, function(index, value){
 				var jsonDate = eval(value);
 				html += '<h4>'+ value.user +' 发表于 ' + dateFormat(value) + '</h4>'
 				 + '<h3>' + value.title +'</h3>'
 				 + 	'<div class="editor">' + value.content + '</div>'
-				 + '<div class="bottom">0条评论 <span class="down">显示全部</span>'
+				 + '<div class="bottom">0条评论 '
 				 + '<span class="up">收起</span></div>'
 				 + '<hr noshade="noshade" size="1"/>';
 			});
 			$('.content').append(html);
+			
+			$.each($('.editor'), function(index, value){
+				arr[index] = $(value).html();
+				summary[index] = arr[index].substr(0,200);
+				
+				if (summary[index].substring(199,200) == '<') {
+					summary[index] = replacePos(summary[index], 200, '');
+				}
+				if(summary[index].substring(198,200) == '</'){
+					summary[index] = replacePos(summary[index], 200, '');
+					summary[index] = replacePos(summary[index], 199, '');
+				}
+				
+				if(arr[index].length > 200){
+					summary[index] = summary[index] + '...<span class="down">显示全部</span>';
+					$(value).html(summary[index]);
+				}
+				$('.bottom .up').hide();
+			});
+			
+			//由父节点委托绑定
+			$.each($('.editor'), function(index, value){
+				$(this).on('click', '.down', function (){
+					$('.editor').eq(index).html(arr[index]);
+					$(this).hide();
+					$('.bottom .up').eq(index).show();
+				});
+			});
+			
+			$.each($('.bottom'), function(index, value){
+				$(this).on('click', '.up',function(){
+					$('.editor').eq(index).html(summary[index]);
+					$(this).hide();
+					$('.editor .down').eq(index).show();
+				});
+			});
+			/*
 			$.each($('.editor'), function(index, value){
 				arr[index] = $(value).height();
 				if($(value).height() > 155) {
@@ -65,6 +103,7 @@ $(function() {
 					$(this).parent().find('.down').show();
 				});
 			});
+			*/
 		},
 	});
 	
@@ -413,4 +452,12 @@ $(function() {
 	});
 
 	$('#accordion').accordion();
+	
 });
+//替换特殊字符
+function replace(strObj,pos,replaceText){
+	return strObj.subStr(0, pos - 1) + replaceText + strObj.substring(pos, strObj.length);
+}
+
+
+
