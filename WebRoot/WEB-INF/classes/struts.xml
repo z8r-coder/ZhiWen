@@ -24,6 +24,9 @@
 		<action name="question" class="com.roy.action.QuestionAction">
 		    <result name="success">index.jsp</result>
 		</action>
+		<action name="comment" class="com.roy.action.CommentAction">
+		    <result name="success">index.jsp</result>
+		</action>
 	</package>
 
 </struts>

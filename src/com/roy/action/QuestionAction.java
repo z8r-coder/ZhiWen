@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.roy.database.Comment;
 import com.roy.database.Question;
+import com.roy.service.ICommentService;
 import com.roy.service.IQuestionService;
 
 import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
@@ -25,6 +27,16 @@ import net.sf.json.JSONObject;
 public class QuestionAction extends ActionSupport{
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	private Question question;
+	private IQuestionService iquestionService;
+	private ICommentService icommentService;
+	
+	public ICommentService getIcommentService() {
+		return icommentService;
+	}
+	public void setIcommentService(ICommentService icommentService) {
+		this.icommentService = icommentService;
+	}
 	public HttpServletRequest getRequest() {
 		return request;
 	}
@@ -37,8 +49,6 @@ public class QuestionAction extends ActionSupport{
 	public void setResponse(HttpServletResponse response) {
 		this.response = response;
 	}
-	private Question question;
-	private IQuestionService iquestionService;
 	public Question getQuestion() {
 		return question;
 	}
@@ -107,20 +117,26 @@ public class QuestionAction extends ActionSupport{
 			List<JSONObject> jlist = new ArrayList<JSONObject>();
 			if (list.size() < 5) {
 				for(Question question : list){
+					List<Comment> list_comment = icommentService.query(question.getId());
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("title", question.getTitle());
 					jsonObject.put("content", question.getContent());
 					jsonObject.put("user", question.getUserAccount());
 					jsonObject.put("date", question.getQuestionDate());
+					jsonObject.put("id", question.getId());
+					jsonObject.put("count", list_comment.size());
 					jlist.add(jsonObject);
 				}
 			}else {
 				for(int i = 0; i < 5;i++){
+					List<Comment> list_comment = icommentService.query(list.get(i).getId());					
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("title", list.get(i).getTitle());
 					jsonObject.put("content", list.get(i).getContent());
 					jsonObject.put("user", list.get(i).getUserAccount());
 					jsonObject.put("date", list.get(i).getQuestionDate());
+					jsonObject.put("id", list.get(i).getId());
+					jsonObject.put("count", list_comment.size());
 					jlist.add(jsonObject);
 				}
 			}

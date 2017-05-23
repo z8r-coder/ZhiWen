@@ -302,6 +302,58 @@ body {
 	color:#ccc;
 	height:1px;
 }
+.content .comment {
+	color : #369;
+	cursor : pointer;
+}
+.content .comment_load dd {
+	background: url(../img/comment_load.gif) no-repeat 75px 45%;
+}
+.content .comment_list {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 5px 10px;
+	display:none;
+}
+.content .comment_list dl{
+	margin:0;
+	padding:3px 0px 5px 0px;
+	border-bottom: 1px solid #ccc;
+}
+.content .comment_list dl dt {
+	margin:0;
+	padding:5px 0 0 0;
+	color: #369;
+}
+.content .comment_list dl dd {
+	margin:0;
+	padding:0;
+	color: #333;
+	line-height: 180%;
+}
+.content .comment_list dl dd .date{
+	color: #666;
+}
+.content .comment_list dl .comment_content {
+	border-bottom:1px solid #ccc;
+}
+.content .comment_add {
+	text-align:right;
+}
+.content .comment_add textarea{
+	width:100%;
+	border:1px solid #ccc;
+	border-radius:4px;
+	background:#fff;
+	padding:5px;
+	font-size:12px;
+	color:#666;
+	margin:0 0 5px 0;
+	resize:none;
+}
+.content .comment_add input {
+	cursor: pointer;
+}
 .content .up {
 	float: right;
 	color: #369;

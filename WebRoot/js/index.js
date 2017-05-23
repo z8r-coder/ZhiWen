@@ -30,6 +30,9 @@ $(function() {
 	$.ajax({
 		url : 'question!show.action',
 		type : 'POST',
+		data : {
+			
+		},
 		success : function(response, status, xhr) {
 			var json = $.parseJSON(response);
 			var html = '';
@@ -40,9 +43,10 @@ $(function() {
 				html += '<h4>'+ value.user +' 发表于 ' + dateFormat(value) + '</h4>'
 				 + '<h3>' + value.title +'</h3>'
 				 + 	'<div class="editor">' + value.content + '</div>'
-				 + '<div class="bottom">0条评论 '
+				 + '<div class="bottom"><span class="comment" data-id="' + value.id + '">' + value.count + '条评论 </span>'
 				 + '<span class="up">收起</span></div>'
-				 + '<hr noshade="noshade" size="1"/>';
+				 + '<hr noshade="noshade" size="1"/>'
+				 + '<div class="comment_list"></div>';
 			});
 			$('.content').append(html);
 			
@@ -80,6 +84,72 @@ $(function() {
 					$(this).hide();
 					$('.editor .down').eq(index).show();
 				});
+			});
+			$.each($('.bottom'), function(index, value){
+				$(this).on('click', '.comment', function(){
+					var comment_this = this;
+					if($.cookie('user')){
+						if(!$('.comment_list').eq(index).has('form').length) {
+							$.ajax({
+								url : 'comment!show.action',
+								type : 'post',
+								beforeSend : function(jqXHR, settings){
+									$('.comment_list').eq(index).append('<dl class="comment_load"><dd>正在加载评论</dd></dl>');
+								},
+								success : function(response, status) {
+									$('.comment_list').eq(index).find('.comment_load').hide();
+									var json_comment = $.parseJSON(response);
+									$.each(json_comment, function(index_comment, value){
+										$('.comment_list').eq(index).append('<dl class="comment_content"><dt>' 
+										+ value.user +'</dt><dd>' + value.comment + '</dd><dd class="date">' 
+										+ value.date + '</dd></dl>');
+									});
+									$('.comment_list').eq(index).append('<form><dl class="commet_content">'
+											 + '<dl class="comment_add"><dt><textarea name="comment.comment"></textarea></dt><dd><input type="hidden" name="comment.titleid" value="'
+											 + $(comment_this).attr('data-id') + '"/><input type="hidden" name="comment.user_account" value="' 
+											 + $.cookie('user')
+											 + '"/><input type="button" value="发表"></dd></dl></form>');
+									$('.comment_list').eq(index).find('input[type=button]').button().click(function(){
+										var _this = this;
+										$('.comment_list').eq(index).find('form').ajaxSubmit({
+											url:'comment!add.action',
+											type: 'post',
+											beforeSubmit : function(formData, jqForm, options){
+												$('#loading').dialog('open');
+												$(_this).button('disable');
+											},
+											success : function(responseText, statusText){
+												if(responseText) {
+													$(_this).button('enable');
+													$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据交互成功');
+													setTimeout(function(){
+														$('#loading').dialog('close');
+														$('.comment_list').eq(index).find('form') .resetForm();
+														$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('数据交互中...');
+													}, 1000);
+												}
+											},
+										});
+									});
+								},
+							});
+						}
+						if($('.comment_list').eq(index).is(':hidden')){
+							$('.comment_list').eq(index).show();
+						} else {
+							$('.comment_list').eq(index).hide();
+						}
+
+					}else{
+						$('#error').dialog('open');
+						setTimeout(function(){
+							$('#error').dialog('close');
+							$('#login').dialog('open');
+						}, 500);
+					}
+				});
+				
+
 			});
 			/*
 			$.each($('.editor'), function(index, value){

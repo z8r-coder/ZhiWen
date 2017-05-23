@@ -2,6 +2,8 @@ package com.roy.idao;
 
 import java.util.List;
 
+import com.roy.database.Comment;
+
 /**
  * 数据访问公共接口
  * @author Roy
@@ -20,6 +22,7 @@ public interface IDaoService {
 	/**
 	 * 保存对象
 	 * @param object
+	 * @return 
 	 * @throws Exception
 	 */
 	public void save(Object object) throws Exception;

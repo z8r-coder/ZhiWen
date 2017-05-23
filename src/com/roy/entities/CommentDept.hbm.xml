@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+<hibernate-mapping>
+   <class name="com.roy.database.Comment" table="comment_table">
+      <id name="id" type="java.lang.Integer">
+         <column name="id"></column>
+         <!-- ID生成策略      采用数据库本地的自动增长 -->
+         <generator class="native"></generator>
+      </id>
+      <property name="titleid" type="java.lang.Integer">
+          <column name="titleid"></column>
+      </property>
+      <property name="user_account" type="java.lang.String">
+          <column name="user_account"></column>
+      </property>
+      <property name="comment" type="java.lang.String">
+          <column name="comment"></column>
+      </property>
+      <property name="date" type="java.sql.Timestamp">
+          <column name="date"></column>
+      </property>
+   </class>
+</hibernate-mapping>

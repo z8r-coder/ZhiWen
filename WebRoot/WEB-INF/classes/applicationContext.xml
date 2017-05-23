@@ -83,5 +83,10 @@
 		<property name="iquestiondaoService" ref="iquestiondaoService"></property>
 	</bean>
 
+	<!-- 定义业务bean -->
+	<bean id="icommentService" class="com.roy.service.impl.CommentServiceImpl">
+		<property name="idaoService" ref="idaoService"></property>
+	</bean>
+
 
 </beans>
