@@ -30,9 +30,6 @@ $(function() {
 	$.ajax({
 		url : 'question!show.action',
 		type : 'POST',
-		data : {
-			
-		},
 		success : function(response, status, xhr) {
 			var json = $.parseJSON(response);
 			var html = '';
@@ -93,6 +90,11 @@ $(function() {
 							$.ajax({
 								url : 'comment!show.action',
 								type : 'post',
+								data : {
+									'comment.titleid' : function(){
+										return $(comment_this).attr('data-id');
+									} 
+								},
 								beforeSend : function(jqXHR, settings){
 									$('.comment_list').eq(index).append('<dl class="comment_load"><dd>正在加载评论</dd></dl>');
 								},
@@ -102,7 +104,7 @@ $(function() {
 									$.each(json_comment, function(index_comment, value){
 										$('.comment_list').eq(index).append('<dl class="comment_content"><dt>' 
 										+ value.user +'</dt><dd>' + value.comment + '</dd><dd class="date">' 
-										+ value.date + '</dd></dl>');
+										+ dateFormat(value) + '</dd></dl>');
 									});
 									$('.comment_list').eq(index).append('<form><dl class="commet_content">'
 											 + '<dl class="comment_add"><dt><textarea name="comment.comment"></textarea></dt><dd><input type="hidden" name="comment.titleid" value="'
@@ -123,7 +125,12 @@ $(function() {
 													$(_this).button('enable');
 													$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据交互成功');
 													setTimeout(function(){
+														var date = new Date();
 														$('#loading').dialog('close');
+														$('.comment_list').eq(index).prepend('<dl class="comment_content"><dt>'+$.cookie('user')
+																+'</dt><dd>' + $('.comment_list').eq(index).find('textarea').val() + '</dd><dd>'
+																+date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours()
+																+':'+date.getMinutes()+'</dd></dl>');        
 														$('.comment_list').eq(index).find('form') .resetForm();
 														$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('数据交互中...');
 													}, 1000);

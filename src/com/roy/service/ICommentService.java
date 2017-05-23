@@ -20,6 +20,13 @@ public interface ICommentService {
 	 */
 	public List<Comment> query(int titleid) throws Exception;
 	/**
+	 * 分页查询
+	 * @param titleid
+	 * @param pageSize
+	 * @return
+	 */
+	public List<Comment> query(int titleid, int pageSize);
+	/**
 	 * 添加评论
 	 * @param comment
 	 */

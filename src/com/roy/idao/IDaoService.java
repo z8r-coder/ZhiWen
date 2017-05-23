@@ -18,7 +18,21 @@ public interface IDaoService {
 	 * @throws Exception
 	 */
 	public List<? extends Object> query(String hql) throws Exception;
-	
+	/**
+	 * 分页查询数据
+	 * @param hql
+	 * @param offset
+	 * @param length
+	 * @return
+	 * @throws Exception
+	 */
+	public List<? extends Object> query(String hql, int offset, int length) throws Exception;
+	/**
+	 * 总记录数
+	 * @param hql
+	 * @return
+	 */
+	public int getCount(String hql);
 	/**
 	 * 保存对象
 	 * @param object

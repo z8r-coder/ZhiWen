@@ -71,11 +71,17 @@ public class CommentAction extends ActionSupport {
 		request = ServletActionContext.getRequest();
 		response.setContentType("text/html;charset=utf-8");
 		try {
-			
 			List<JSONObject> jlist = new ArrayList<JSONObject>();
-			System.out.println(request.getParameter("comment.titleid"));
-			//int titleid = Integer.parseInt(request.getParameter("comment.titleid"));
-			//System.out.println(titleid);
+			int titleid = Integer.parseInt(request.getParameter("comment.titleid"));
+			List<Comment> list_comment = icommentService.query(titleid);
+			System.out.println(list_comment.size());
+			for(int i = 0; i < list_comment.size();i++){
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("user", list_comment.get(i).getUser_account());
+				jsonObject.put("comment", list_comment.get(i).getComment());
+				jsonObject.put("date", list_comment.get(i).getDate());
+				jlist.add(jsonObject);
+			}
 			JSONArray jsonArray = JSONArray.fromObject(jlist);
 			response.getWriter().println(jsonArray);
 		} catch (Exception e) {

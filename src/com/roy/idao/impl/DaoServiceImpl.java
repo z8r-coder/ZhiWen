@@ -40,7 +40,25 @@ public class DaoServiceImpl implements IDaoService {
 		session.close();
 		return list;
 	}
-
+	@Override
+	public List<? extends Object> query(String hql, int offset, int length) throws Exception {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		query.setFirstResult(offset);
+		query.setMaxResults(length);
+		List<? extends Object> list = query.list();
+		session.close();
+		return list;
+	}
+	@Override
+	public int getCount(String hql) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		int total = Integer.parseInt(query.list().get(0).toString());
+		return total;
+	}
 	@Override
 	public void save(Object object) throws Exception {
 		// TODO Auto-generated method stub
