@@ -86,6 +86,15 @@
 	<!-- 定义业务bean -->
 	<bean id="icommentService" class="com.roy.service.impl.CommentServiceImpl">
 		<property name="idaoService" ref="idaoService"></property>
+		<property name="titleid_pageBean">
+		    <map>
+		        <entry key="0" value-ref="pageBean" />
+		    </map>
+		</property>
+	</bean>
+	
+	<bean id="pageBean" class="com.roy.database.PageBean">
+	    
 	</bean>
 
 </beans>

@@ -13,6 +13,7 @@ public class PageBean {
 	private int totalPage;//总页数
 	private int currentPage;//当前页
 	private int pageSize;//每页记录数
+	private int totalRecord;//总记录数
 	
 	@SuppressWarnings("unused")
 	private boolean isFirstPage;//是否为第一页
@@ -22,6 +23,13 @@ public class PageBean {
 	private boolean hasPreviousPage;//是否有前一页
 	@SuppressWarnings("unused")
 	private boolean hasNextPage;
+	
+	public int getTotalRecord() {
+		return totalRecord;
+	}
+	public void setTotalRecord(int totalRecord) {
+		this.totalRecord = totalRecord;
+	}
 	public List<? extends Object> getList() {
 		return list;
 	}
@@ -50,7 +58,9 @@ public class PageBean {
 	/**
 	 * 以下判断页信息
 	 */
-	
+	public boolean isOver() {
+		return currentPage > totalPage;
+	}
 	public boolean isFirstPage() {
 		return currentPage == 1;
 	}
