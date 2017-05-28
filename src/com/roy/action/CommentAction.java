@@ -83,14 +83,33 @@ public class CommentAction extends ActionSupport {
 			List<JSONObject> jlist = new ArrayList<JSONObject>();
 			int titleid = Integer.parseInt(request.getParameter("comment.titleid"));
 			List<Comment> list_comment = icommentService.query(titleid, 2);
-			if (list_comment == null) {
-				//不存在更多的评论
+			PageBean pageBean = icommentService.getPageBean(titleid);
+			if (pageBean.getCurrentPage() - 1 == pageBean.getTotalPage()) {
+				//这是最后一页
+				for(int i = 0; i < list_comment.size();i++){
+					if (i == list_comment.size() - 1) {
+						JSONObject jsonObject = new JSONObject();
+						jsonObject.put("user", list_comment.get(i).getUser_account());
+						jsonObject.put("comment", list_comment.get(i).getComment());
+						jsonObject.put("date", list_comment.get(i).getDate());
+						jsonObject.put("isLast", true);
+						jlist.add(jsonObject);
+					}else {
+						JSONObject jsonObject = new JSONObject();
+						jsonObject.put("user", list_comment.get(i).getUser_account());
+						jsonObject.put("comment", list_comment.get(i).getComment());
+						jsonObject.put("date", list_comment.get(i).getDate());
+						jsonObject.put("isLast", false);
+						jlist.add(jsonObject);
+					}
+				}
 			}else {
 				for(int i = 0; i < list_comment.size();i++){
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("user", list_comment.get(i).getUser_account());
 					jsonObject.put("comment", list_comment.get(i).getComment());
 					jsonObject.put("date", list_comment.get(i).getDate());
+					jsonObject.put("isLast", false);
 					jlist.add(jsonObject);
 				}	
 			}

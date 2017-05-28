@@ -3,6 +3,7 @@ package com.roy.service;
 import java.util.List;
 
 import com.roy.database.Comment;
+import com.roy.database.PageBean;
 import com.roy.database.Question;
 import com.roy.database.User;
 
@@ -12,7 +13,13 @@ public interface ICommentService {
 	 * @return
 	 */
 	public List<Comment> query(User user) throws Exception;
-	
+	/**
+	 * 获取相应的pageBean
+	 * @param titleid
+	 * @return
+	 * @throws Exception
+	 */
+	public PageBean getPageBean(int titleid) throws Exception;
 	/**
 	 * 查询一个问题下的所有评论
 	 * @param question

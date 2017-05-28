@@ -121,15 +121,15 @@ $(function() {
 											},
 											success : function(response, status) {
 												var json_comment_more = $.parseJSON(response);
-												if(json_comment_more.length == 0) {
-													$('.comment_list').eq(index).find('.load_more').button().html('没有更多评论');
-												}else {
-													$.each(json_comment_more, function(index3, value){
-														$('.comment_list').eq(index).find('.comment_content').last().after('<dl class="comment_content"><dt>' 
-														+ value.user +'</dt><dd>' + value.comment + '</dd><dd class="date">' 
-														+ dateFormat(value) + '</dd></dl>');
-													});
-												}
+												$.each(json_comment_more, function(index3, value){
+													$('.comment_list').eq(index).find('.comment_content').last().after('<dl class="comment_content"><dt>' 
+															+ value.user +'</dt><dd>' + value.comment + '</dd><dd class="date">' 
+															+ dateFormat(value) + '</dd></dl>');
+													if(value.isLast) {
+														$('.comment_list').eq(index).find('.load_more').button().html('没有更多评论项');
+														$('.comment_list').eq(index).find('.load_more').off('click');
+													}
+												});
 											}
 										});
 									});

@@ -30,7 +30,11 @@ public class CommentServiceImpl implements ICommentService {
 	public void setTitleid_pageBean(Map<Integer, PageBean> titleid_pageBean) {
 		this.titleid_pageBean = titleid_pageBean;
 	}
-
+	@Override
+	public PageBean getPageBean(int titleid) throws Exception {
+		// TODO Auto-generated method stub
+		return titleid_pageBean.get(titleid);
+	}
 	@Override
 	public List<Comment> query(int titleid, int pageSize) throws Exception {
 		// TODO Auto-generated method stub
@@ -69,6 +73,7 @@ public class CommentServiceImpl implements ICommentService {
 				int length = pageBean.getTotalRecord() - offset + 1;
 				String hql_query = "from Comment where titleid=" + titleid + " order by date desc";
 				pageBean.setCurrentPage(pageBean.getCurrentPage() + 1);
+				@SuppressWarnings("unchecked")
 				List<Comment> list = (List<Comment>) idaoService.query(hql_query, offset, length);
 				titleid_pageBean.put(titleid, pageBean);
 				return list;
