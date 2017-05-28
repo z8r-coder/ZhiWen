@@ -25,7 +25,14 @@ public interface ICommentService {
 	 * @param pageSize
 	 * @return
 	 */
-	public List<Comment> query(int titleid, int pageSize);
+	public List<Comment> query(int titleid, int pageSize) throws Exception;
+	/**
+	 * 获取评论总数
+	 * @param titleid
+	 * @return
+	 * @throws Exception
+	 */
+	public int getCount(int titleid) throws Exception;
 	/**
 	 * 添加评论
 	 * @param comment

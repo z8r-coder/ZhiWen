@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.roy.database.Comment;
 import com.roy.idao.IDaoService;
 
 public class DaoServiceImpl implements IDaoService {
@@ -52,11 +53,12 @@ public class DaoServiceImpl implements IDaoService {
 		return list;
 	}
 	@Override
-	public int getCount(String hql) {
+	public int getCount(String hql) throws Exception {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Query query = session.createQuery(hql);
 		int total = Integer.parseInt(query.list().get(0).toString());
+		session.close();
 		return total;
 	}
 	@Override

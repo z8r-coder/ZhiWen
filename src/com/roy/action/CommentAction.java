@@ -2,6 +2,7 @@ package com.roy.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,9 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.roy.database.Comment;
+import com.roy.database.PageBean;
 import com.roy.database.Question;
+import com.roy.idao.IDaoService;
 import com.roy.service.ICommentService;
 import com.roy.service.IQuestionService;
 
@@ -19,11 +22,17 @@ import net.sf.json.JSONObject;
 
 public class CommentAction extends ActionSupport {
 	private ICommentService icommentService;
-	private IQuestionService iquestionService;
+	private IDaoService idaoService;
 	private Comment comment;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	public IDaoService getIdaoService() {
+		return idaoService;
+	}
 
+	public void setIdaoService(IDaoService idaoService) {
+		this.idaoService = idaoService;
+	}
 	public HttpServletRequest getRequest() {
 		return request;
 	}
@@ -73,14 +82,17 @@ public class CommentAction extends ActionSupport {
 		try {
 			List<JSONObject> jlist = new ArrayList<JSONObject>();
 			int titleid = Integer.parseInt(request.getParameter("comment.titleid"));
-			List<Comment> list_comment = icommentService.query(titleid);
-			System.out.println(list_comment.size());
-			for(int i = 0; i < list_comment.size();i++){
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("user", list_comment.get(i).getUser_account());
-				jsonObject.put("comment", list_comment.get(i).getComment());
-				jsonObject.put("date", list_comment.get(i).getDate());
-				jlist.add(jsonObject);
+			List<Comment> list_comment = icommentService.query(titleid, 2);
+			if (list_comment == null) {
+				//不存在更多的评论
+			}else {
+				for(int i = 0; i < list_comment.size();i++){
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("user", list_comment.get(i).getUser_account());
+					jsonObject.put("comment", list_comment.get(i).getComment());
+					jsonObject.put("date", list_comment.get(i).getDate());
+					jlist.add(jsonObject);
+				}	
 			}
 			JSONArray jsonArray = JSONArray.fromObject(jlist);
 			response.getWriter().println(jsonArray);

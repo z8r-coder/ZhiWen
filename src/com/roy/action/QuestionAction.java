@@ -1,6 +1,7 @@
 package com.roy.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,26 +118,24 @@ public class QuestionAction extends ActionSupport{
 			List<JSONObject> jlist = new ArrayList<JSONObject>();
 			if (list.size() < 5) {
 				for(Question question : list){
-					List<Comment> list_comment = icommentService.query(question.getId());
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("title", question.getTitle());
 					jsonObject.put("content", question.getContent());
 					jsonObject.put("user", question.getUserAccount());
 					jsonObject.put("date", question.getQuestionDate());
 					jsonObject.put("id", question.getId());
-					jsonObject.put("count", list_comment.size());
+					jsonObject.put("count", icommentService.getCount(question.getId()));
 					jlist.add(jsonObject);
 				}
 			}else {
-				for(int i = 0; i < 5;i++){
-					List<Comment> list_comment = icommentService.query(list.get(i).getId());					
+				for(int i = 0; i < 5;i++){					
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("title", list.get(i).getTitle());
 					jsonObject.put("content", list.get(i).getContent());
 					jsonObject.put("user", list.get(i).getUserAccount());
 					jsonObject.put("date", list.get(i).getQuestionDate());
 					jsonObject.put("id", list.get(i).getId());
-					jsonObject.put("count", list_comment.size());
+					jsonObject.put("count", icommentService.getCount(list.get(i).getId()));
 					jlist.add(jsonObject);
 				}
 			}

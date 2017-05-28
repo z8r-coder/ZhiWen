@@ -32,7 +32,7 @@ public interface IDaoService {
 	 * @param hql
 	 * @return
 	 */
-	public int getCount(String hql);
+	public int getCount(String hql) throws Exception;
 	/**
 	 * ±£¥Ê∂‘œÛ
 	 * @param object

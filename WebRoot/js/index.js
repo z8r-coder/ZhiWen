@@ -106,6 +106,33 @@ $(function() {
 										+ value.user +'</dt><dd>' + value.comment + '</dd><dd class="date">' 
 										+ dateFormat(value) + '</dd></dl>');
 									});
+									$('.comment_list').eq(index).append('<dl><dd><span class="load_more">加载更多评论</span></dd></dl>');
+									$('.comment_list').eq(index).find('.load_more').button().on('click',function(){
+										$.ajax({
+											url : 'comment!show.action',
+											type : 'post',
+											data : {
+												'comment.titleid' : function(){
+													return $(comment_this).attr('data-id');
+												} 
+											},
+											beforeSend : function(jqXHR, settings){
+												
+											},
+											success : function(response, status) {
+												var json_comment_more = $.parseJSON(response);
+												if(json_comment_more.length == 0) {
+													$('.comment_list').eq(index).find('.load_more').button().html('没有更多评论');
+												}else {
+													$.each(json_comment_more, function(index3, value){
+														$('.comment_list').eq(index).find('.comment_content').last().after('<dl class="comment_content"><dt>' 
+														+ value.user +'</dt><dd>' + value.comment + '</dd><dd class="date">' 
+														+ dateFormat(value) + '</dd></dl>');
+													});
+												}
+											}
+										});
+									});
 									$('.comment_list').eq(index).append('<form><dl class="commet_content">'
 											 + '<dl class="comment_add"><dt><textarea name="comment.comment"></textarea></dt><dd><input type="hidden" name="comment.titleid" value="'
 											 + $(comment_this).attr('data-id') + '"/><input type="hidden" name="comment.user_account" value="' 
